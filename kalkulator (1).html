@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kalkulator Bangun Ruang Interaktif</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    select, input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    #gambar {
+      text-align: center;
+      margin: 20px 0;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    #hasil {
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 15px;
+      white-space: pre-line;
+    }
+    #btnKembali {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    #btnKembali:hover {
+      background-color: #155a9c;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Kalkulator Bangun Ruang</h1>
+
+  <label for="bangun">Pilih Bangun Ruang:</label>
+  <select id="bangun" onchange="tampilkanForm()">
+    <option value="">--Pilih--</option>
+    <option value="balok">Balok</option>
+    <option value="kubus">Kubus</option>
+    <option value="bola">Bola</option>
+    <option value="kerucut">Kerucut</option>
+    <option value="tabung">Tabung</option>
+  </select>
+
+  <div id="gambar"></div>
+
+  <label for="perhitungan">Pilih Jenis Perhitungan:</label>
+  <select id="perhitungan">
+    <option value="">--Pilih--</option>
+    <option value="volume">Volume</option>
+    <option value="luas">Luas Permukaan</option>
+  </select>
+
+  <div id="formInput"></div>
+  <button onclick="hitung()">Hitung</button>
+  <button id="btnKembali" onclick="window.location.href='index.html'">Kembali ke Menu</button>
+  <div id="hasil"></div>
+</div>
+
+<script>
+function tampilkanForm() {
+  const bangun = document.getElementById('bangun').value;
+  const gambar = document.getElementById('gambar');
+  const form = document.getElementById('formInput');
+  let img = '';
+  let html = '';
+
+  switch(bangun) {
+    case 'balok':
+      img = 'https://akupintar.id/documents/20143/0/balok.png/56e0803f-2b01-ffd2-4252-23ce2cda3bf0?t=1565195874420';
+      html = `
+        <input type="number" id="p" placeholder="Panjang" min="0" />
+        <input type="number" id="l" placeholder="Lebar" min="0" />
+        <input type="number" id="t" placeholder="Tinggi" min="0" />
+      `;
+      break;
+    case 'kubus':
+      img = 'https://akupintar.id/documents/20143/0/kubus.png/e1f61d6a-37c5-5220-365f-86df63f62644?t=1565195514088';
+      html = `<input type="number" id="s" placeholder="Sisi" min="0" />`;
+      break;
+    case 'bola':
+      img = 'https://labarasi.wordpress.com/wp-content/uploads/2011/10/bola.png';
+      html = `<input type="number" id="r" placeholder="Jari-jari" min="0" />`;
+      break;
+    case 'kerucut':
+      img = 'https://rumuspintar.com/wp-content/uploads/2019/07/Kerucut.jpg';
+      html = `
+        <input type="number" id="r" placeholder="Jari-jari" min="0" />
+        <input type="number" id="t" placeholder="Tinggi" min="0" />
+      `;
+      break;
+    case 'tabung':
+      img = 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Cylinder_geometry.svg';
+      html = `
+        <input type="number" id="r" placeholder="Jari-jari" min="0" />
+        <input type="number" id="t" placeholder="Tinggi" min="0" />
+      `;
+      break;
+    default:
+      img = '';
+      html = '';
+  }
+
+  gambar.innerHTML = img ? `<img src="${img}" alt="Ilustrasi ${bangun}">` : '';
+  form.innerHTML = html;
+  document.getElementById('hasil').innerHTML = '';
+}
+
+function hitung() {
+  const bangun = document.getElementById('bangun').value;
+  const jenis = document.getElementById('perhitungan').value;
+  let hasil = '', langkah = '';
+
+  const getVal = id => parseFloat(document.getElementById(id)?.value || 0);
+
+  if (!bangun) {
+    alert('Silakan pilih bangun ruang.');
+    return;
+  }
+  if (!jenis) {
+    alert('Silakan pilih jenis perhitungan.');
+    return;
+  }
+
+  switch(bangun) {
+    case 'balok':
+      const p = getVal('p'), l = getVal('l'), t = getVal('t');
+      if ([p,l,t].some(v => v <= 0)) {
+        alert('Masukkan nilai positif untuk panjang, lebar, dan tinggi.');
+        return;
+      }
+      if (jenis === 'volume') {
+        const v = p * l * t;
+        langkah = `Volume = p × l × t = ${p} × ${l} × ${t} = ${v}`;
+        hasil = `Volume Balok: ${v}`;
+      } else {
+        const luas = 2 * (p*l + p*t + l*t);
+        langkah = `Luas Permukaan = 2 × (pl + pt + lt) = 2 × (${p*l} + ${p*t} + ${l*t}) = ${luas}`;
+        hasil = `Luas Permukaan Balok: ${luas}`;
+      }
+      break;
+
+    case 'kubus':
+      const s = getVal('s');
+      if (s <= 0) {
+        alert('Masukkan nilai positif untuk sisi.');
+        return;
+      }
+      if (jenis === 'volume') {
+        const v = s ** 3;
+        langkah = `Volume = s³ = ${s}³ = ${v}`;
+        hasil = `Volume Kubus: ${v}`;
+      } else {
+        const luas = 6 * s ** 2;
+        langkah = `Luas Permukaan = 6 × s² = 6 × ${s}² = ${luas}`;
+        hasil = `Luas Permukaan Kubus: ${luas}`;
+      }
+      break;
+
+    case 'bola':
+      const rBola = getVal('r');
+      if (rBola <= 0) {
+        alert('Masukkan nilai positif untuk jari-jari.');
+        return;
+      }
+      if (jenis === 'volume') {
+        const v = (4/3) * Math.PI * rBola ** 3;
+        langkah = `Volume = 4/3 × π × r³ = 4/3 × π × ${rBola}³ = ${v.toFixed(2)}`;
+        hasil = `Volume Bola: ${v.toFixed(2)}`;
+      } else {
+        const luas = 4 * Math.PI * rBola ** 2;
+        langkah = `Luas Permukaan = 4 × π × r² = 4 × π × ${rBola}² = ${luas.toFixed(2)}`;
+        hasil = `Luas Permukaan Bola: ${luas.toFixed(2)}`;
+      }
+      break;
+
+    case 'kerucut':
+      const rKerucut = getVal('r'), tKerucut = getVal('t');
+      if (rKerucut <= 0 || tKerucut <= 0) {
+        alert('Masukkan nilai positif untuk jari-jari dan tinggi.');
+        return;
+      }
+      const sKerucut = Math.sqrt(rKerucut ** 2 + tKerucut ** 2);
+      if (jenis === 'volume') {
+        const v = (1/3) * Math.PI * rKerucut ** 2 * tKerucut;
+        langkah = `Volume = 1/3 × π × r² × t = 1/3 × π × ${rKerucut}² × ${tKerucut} = ${v.toFixed(2)}`;
+        hasil = `Volume Kerucut: ${v.toFixed(2)}`;
+      } else {
+        const luas = Math.PI * rKerucut * (rKerucut + sKerucut);
+        langkah = `Luas Permukaan = π × r × (r + s) = π × ${rKerucut} × (${rKerucut} + ${sKerucut.toFixed(2)}) = ${luas.toFixed(2)}`;
+        hasil = `Luas Permukaan Kerucut: ${luas.toFixed(2)}`;
+      }
+      break;
+    case 'tabung':
+      const rTabung = getVal('r'), tTabung = getVal('t');
+      if (rTabung <= 0 || tTabung <= 0) {
+        alert('Masukkan nilai positif untuk jari-jari dan tinggi.');
+        return;
+      }
+      if (jenis === 'volume') {
+        const v = Math.PI * rTabung ** 2 * tTabung;
+        langkah = `Volume = π × r² × t = π × ${rTabung}² × ${tTabung} = ${v.toFixed(2)}`;
+        hasil = `Volume Tabung: ${v.toFixed(2)}`;
+      } else {
+        const luas = 2 * Math.PI * rTabung * (rTabung + tTabung);
+        langkah = `Luas Permukaan = 2 × π × r × (r + t) = 2 × π × ${rTabung} × (${rTabung} + ${tTabung}) = ${luas.toFixed(2)}`;
+        hasil = `Luas Permukaan Tabung: ${luas.toFixed(2)}`;
+      }
+      break;
+
+    default:
+      hasil = 'Bangun ruang tidak dikenali.';
+      langkah = '';
+  }
+
+  document.getElementById('hasil').innerHTML = `<p>${hasil}</p><pre>${langkah}</pre>`;
+}
+</script>
+</body>
+</html>

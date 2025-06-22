@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Belajar Flowgorithm</title>
+  <style>
+    body {
+      font-family: 'Gill Sans';
+      background: url('background TIK.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 1.8em;
+    }
+    p {
+      font-size: 1em;
+      text-align: justify;
+    }
+    a.button {
+      display: block;
+      text-align: center;
+      margin: 12px auto;
+      padding: 10px 20px;
+      background-color: #8e44ad;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      width: max-content;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+    a.button:hover {
+      background-color: #732d91;
+    }
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.4em;
+      }
+      a.button {
+        width: 100%;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Selamat Datang di <strong>HAFLOW!!</strong></h1>
+    <p>
+      Website ini dirancang untuk membantu Anda memahami dasar-dasar pemrograman menggunakan
+      <strong>Flowgorithm</strong>, sebuah aplikasi untuk membuat algoritma secara visual menggunakan diagram alur (flowchart).
+    </p>
+
+    <a href="flowgorithm.html" class="button" onclick="playClick()">📘 Tutorial Flowgorithm</a>
+    <a href="kalkulator.html" class="button" onclick="playClick()">🧮 Kalkulator Bangun Ruang</a>
+    <a href="Latihan Siswa.html" class="button" onclick="playClick()">📝 Latihan Flowgorithm</a>
+
+    <p style="text-align:center; margin-top: 30px;">
+      <em>Siap belajar? Klik tutorial di atas dan mulai eksplorasi!</em>
+    </p>
+  </div>
+
+  <audio id="clickSound" src="https://www.soundjay.com/buttons/button-16.mp3" preload="auto"></audio>
+  <script>
+    function playClick() {
+      const sound = document.getElementById('clickSound');
+      sound.currentTime = 0; // Reset supaya suara bisa diputar berulang tanpa delay
+      sound.play();
+    }
+  </script>
+</body>
+</html>

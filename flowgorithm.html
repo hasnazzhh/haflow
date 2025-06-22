@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panduan Lengkap Flowgorithm</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #c9d6ff, #e2e2e2);
+      margin: 0; padding: 20px;
+      color: #222;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    h2 {
+      margin-top: 30px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #2980b9;
+      padding-bottom: 5px;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    pre {
+      background: #f5f7fa;
+      border-left: 5px solid #2980b9;
+      padding: 12px 16px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      white-space: pre-wrap;
+      border-radius: 6px;
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+    ul {
+      margin-left: 20px;
+      font-size: 1.1rem;
+    }
+    .note {
+      background: #fffae6;
+      border-left: 4px solid #f39c12;
+      padding: 12px 16px;
+      margin: 15px 0;
+      border-radius: 6px;
+      font-style: italic;
+    }
+    a.button {
+      display: inline-block;
+      background-color: #2980b9;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 30px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+    a.button:hover {
+      background-color: #1c5980;
+    }
+    .center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Panduan Lengkap Penggunaan Flowgorithm</h1>
+    <p class="center"><em>Belajar membuat flowchart dan algoritma dengan mudah dan lengkap</em></p>
+
+    <h2>1. Apa Itu Flowgorithm?</h2>
+    <p>
+      Flowgorithm adalah aplikasi yang membantu kamu membuat flowchart secara visual, sehingga memudahkan memahami cara kerja algoritma dan pemrograman. Flowchart adalah diagram yang menggambarkan alur proses secara urut dan jelas.
+    </p>
+
+    <h2>2. Membuat Variable (Deklarasi Variable)</h2>
+    <p>Variable adalah tempat penyimpanan data sementara di dalam program. Kamu harus mendeklarasikan variable sebelum menggunakannya di Flowgorithm.</p>
+    <ul>
+      <li>Buka menu <strong>Edit &gt; Variables</strong></li>
+      <li>Klik tombol <strong>Add</strong> untuk menambahkan variable baru</li>
+      <li>Isi nama variable, tipe data, dan nilai awal jika perlu</li>
+    </ul>
+    <pre>
+Contoh deklarasi variable:
+  Nama: panjang
+  Tipe: Integer
+  Nilai awal: (kosong atau 0)
+    </pre>
+
+    <h2>3. Mendeklarasikan Banyak Variable Sekaligus</h2>
+    <p>Di Flowgorithm, kamu bisa mendeklarasikan beberapa variable sekaligus dengan memisahkan nama variable menggunakan koma.</p>
+    <pre>
+Declare panjang, lebar, tinggi As Integer
+    </pre>
+    <p>Artinya ketiga variable tersebut bertipe Integer.</p>
+
+    <h2>4. Aturan Penamaan Variable</h2>
+    <ul>
+      <li>Nama variable harus dimulai dengan huruf (a-z atau A-Z)</li>
+      <li>Bisa mengandung angka dan underscore (_) tapi tidak boleh diawali angka</li>
+      <li>Tidak boleh ada spasi di nama variable</li>
+      <li>Case sensitive, artinya <code>panjang</code> dan <code>Panjang</code> adalah variable berbeda</li>
+    </ul>
+    <pre>
+Contoh nama variable yang benar:
+  nilai1
+  panjang_balok
+  Volume
+    </pre>
+
+    <h2>5. Memberi Nilai pada Variable (Assignment)</h2>
+    <p>Kamu bisa memberikan nilai atau mengubah nilai variable dengan blok Assignment.</p>
+    <pre>
+Contoh assignment:
+  volume = panjang * lebar * tinggi
+    </pre>
+
+    <h2>6. Input dan Output Statement</h2>
+    <h3>Input (Memasukkan Data)</h3>
+    <p>Input digunakan untuk menerima data dari pengguna dan menyimpannya ke variable.</p>
+    <pre>
+Input panjang
+Input lebar
+Input tinggi
+    </pre>
+
+    <h3>Output (Menampilkan Data)</h3>
+    <p>Output digunakan untuk menampilkan informasi atau hasil perhitungan ke layar.</p>
+    <pre>
+Output "Volume balok adalah: " + volume
+    </pre>
+
+    <h2>7. Seleksi (If-Else)</h2>
+    <p>Seleksi atau percabangan digunakan untuk menjalankan perintah berbeda berdasarkan kondisi.</p>
+    <pre>
+IF nilai >= 75 THEN
+    Output "Lulus"
+ELSE
+    Output "Remedial"
+ENDIF
+    </pre>
+
+    <h2>8. Contoh Lengkap: Flowchart Menghitung Volume Balok</h2>
+    <p>Langkah-langkah:</p>
+    <ol>
+      <li>Declare variable: <code>panjang, lebar, tinggi, volume</code> (semua Integer)</li>
+      <li>Input nilai panjang, lebar, dan tinggi dari pengguna</li>
+      <li>Hitung volume dengan rumus: volume = panjang × lebar × tinggi</li>
+      <li>Output hasil volume ke layar</li>
+    </ol>
+    <pre>
+Declare panjang, lebar, tinggi, volume As Integer
+
+Input panjang
+Input lebar
+Input tinggi
+
+volume = panjang * lebar * tinggi
+
+Output "Volume balok adalah: " + volume
+    </pre>
+
+    <h2>9. Contoh Kode Flowgorithm (XML) untuk Import</h2>
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;flowgorithm fileversion="2.19"&gt;
+  &lt;attributes&gt;
+    &lt;attribute name="name" value="Hitung Volume Balok"/&gt;
+    &lt;attribute name="variables"&gt;
+      &lt;variable name="panjang" type="Integer"/&gt;
+      &lt;variable name="lebar" type="Integer"/&gt;
+      &lt;variable name="tinggi" type="Integer"/&gt;
+      &lt;variable name="volume" type="Integer"/&gt;
+    &lt;/attribute&gt;
+  &lt;/attributes&gt;
+  &lt;main&gt;
+    &lt;declare name="panjang" type="Integer"/&gt;
+    &lt;declare name="lebar" type="Integer"/&gt;
+    &lt;declare name="tinggi" type="Integer"/&gt;
+    &lt;declare name="volume" type="Integer"/&gt;
+    
+    &lt;input variable="panjang" prompt="Masukkan panjang:"/&gt;
+    &lt;input variable="lebar" prompt="Masukkan lebar:"/&gt;
+    &lt;input variable="tinggi" prompt="Masukkan tinggi:"/&gt;
+    
+    &lt;assignment variable="volume" expression="panjang * lebar * tinggi"/&gt;
+    
+    &lt;output expression="&quot;Volume balok adalah: &quot; + volume"/&gt;
+  &lt;/main&gt;
+&lt;/flowgorithm&gt;
+    </pre>
+
+    <div class="center">
+      <a href="index.html" class="button">⬅️ Kembali ke Menu</a>
+    </div>
+  </div>
+</body>
+</html>
